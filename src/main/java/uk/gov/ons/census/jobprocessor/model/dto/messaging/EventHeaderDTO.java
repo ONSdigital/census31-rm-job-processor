@@ -3,6 +3,7 @@ package uk.gov.ons.census.jobprocessor.model.dto.messaging;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.Data;
+import uk.gov.ons.census.common.model.entity.EventType;
 
 @Data
 public class EventHeaderDTO {
@@ -14,4 +15,5 @@ public class EventHeaderDTO {
   private UUID messageId;
   private UUID correlationId;
   private String originatingUser;
+  private EventType messageType;
 }

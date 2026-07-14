@@ -2,6 +2,7 @@ package uk.gov.ons.census.jobprocessor.transformer;
 
 import java.util.Map;
 import java.util.UUID;
+import uk.gov.ons.census.common.model.entity.EventType;
 import uk.gov.ons.census.common.model.entity.Job;
 import uk.gov.ons.census.common.model.entity.JobRow;
 import uk.gov.ons.census.common.validation.ColumnValidator;
@@ -26,7 +27,8 @@ public class BulkInvalidCaseTransformer implements Transformer {
     payloadDTO.setInvalidCase(invalidCaseDTO);
 
     EventDTO event = new EventDTO();
-    EventHeaderDTO eventHeader = EventHelper.createEventDTO(topic, job.getProcessedBy());
+    EventHeaderDTO eventHeader =
+        EventHelper.createEventDTO(topic, job.getProcessedBy(), EventType.INVALID_CASE);
     eventHeader.setCorrelationId(job.getId());
     event.setHeader(eventHeader);
     event.setPayload(payloadDTO);

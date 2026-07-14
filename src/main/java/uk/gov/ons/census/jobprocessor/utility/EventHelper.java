@@ -4,6 +4,7 @@ import static uk.gov.ons.census.jobprocessor.utility.Constants.EVENT_SCHEMA_VERS
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
+import uk.gov.ons.census.common.model.entity.EventType;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.EventHeaderDTO;
 
 public class EventHelper {
@@ -16,7 +17,11 @@ public class EventHelper {
   }
 
   public static EventHeaderDTO createEventDTO(
-      String topic, String eventChannel, String eventSource, String userEmail) {
+      String topic,
+      String eventChannel,
+      String eventSource,
+      String userEmail,
+      EventType eventType) {
     EventHeaderDTO eventHeader = new EventHeaderDTO();
 
     eventHeader.setVersion(EVENT_SCHEMA_VERSION);
@@ -27,11 +32,16 @@ public class EventHelper {
     eventHeader.setCorrelationId(UUID.randomUUID());
     eventHeader.setTopic(topic);
     eventHeader.setOriginatingUser(userEmail);
+    eventHeader.setMessageType(eventType);
 
     return eventHeader;
   }
 
   public static EventHeaderDTO createEventDTO(String topic, String userEmail) {
-    return createEventDTO(topic, EVENT_CHANNEL, EVENT_SOURCE, userEmail);
+    return createEventDTO(topic, EVENT_CHANNEL, EVENT_SOURCE, userEmail, null);
+  }
+
+  public static EventHeaderDTO createEventDTO(String topic, String userEmail, EventType eventType) {
+    return createEventDTO(topic, EVENT_CHANNEL, EVENT_SOURCE, userEmail, eventType);
   }
 }
