@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM mirror.gcr.io/library/eclipse-temurin:21-jre-alpine
 
 CMD ["java", "-jar", "/opt/census-rm-job-processor.jar"]
 
