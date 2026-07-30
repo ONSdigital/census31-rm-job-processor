@@ -41,8 +41,7 @@ public class NewCaseTransformer implements Transformer {
     newCase.setMsoa(rowData.get("MSOA"));
     newCase.setLad(rowData.get("LAD"));
     newCase.setRegion(rowData.get("REGION"));
-    newCase.setHtcWillingness(rowData.get("HTC_WILLINGNESS"));
-    newCase.setHtcDigital(rowData.get("HTC_DIGITAL"));
+    newCase.setHtc(rowData.get("HTC"));
     newCase.setTreatmentCode(rowData.get("TREATMENT_CODE"));
     newCase.setFieldCoordinatorId(rowData.get("FIELDCOORDINATOR_ID"));
     newCase.setFieldOfficerId(rowData.get("FIELDOFFICER_ID"));

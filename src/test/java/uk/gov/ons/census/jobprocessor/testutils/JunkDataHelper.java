@@ -37,8 +37,7 @@ public class JunkDataHelper {
     junkCase.setCeExpectedCapacity(0);
     junkCase.setFieldCoordinatorId("fcor_id");
     junkCase.setFieldOfficerId("foff_id");
-    junkCase.setHtcDigital("0");
-    junkCase.setHtcWillingness("0");
+    junkCase.setHtc("1");
     junkCase.setLad("0000");
     junkCase.setLatitude("0.0.0.0.0.0");
     junkCase.setLsoa("0000");
@@ -80,7 +79,7 @@ public class JunkDataHelper {
     jobRowData.put("UPRN", "0000");
     jobRowData.put("ESTAB_UPRN", "0000");
     jobRowData.put("ADDRESS_TYPE", "HH");
-    jobRowData.put("ESTAB_TYPE", "CARE HOME");
+    jobRowData.put("ESTAB_TYPE", "HOUSEHOLD");
     jobRowData.put("ADDRESS_LEVEL", "U");
     jobRowData.put("ABP_CODE", "0000");
     jobRowData.put("ORGANISATION_NAME", "");
@@ -96,9 +95,8 @@ public class JunkDataHelper {
     jobRowData.put("MSOA", "0000");
     jobRowData.put("LAD", "0000");
     jobRowData.put("REGION", "0000");
-    jobRowData.put("HTC_WILLINGNESS", "0");
-    jobRowData.put("HTC_DIGITAL", "0");
-    jobRowData.put("TREATMENT_CODE", "HH_LP1E");
+    jobRowData.put("HTC", "1");
+    jobRowData.put("TREATMENT_CODE", "HH_PBXN");
     jobRowData.put("FIELDCOORDINATOR_ID", "0000");
     jobRowData.put("FIELDOFFICER_ID", "0000");
     jobRowData.put("CE_EXPECTED_CAPACITY", "0");
