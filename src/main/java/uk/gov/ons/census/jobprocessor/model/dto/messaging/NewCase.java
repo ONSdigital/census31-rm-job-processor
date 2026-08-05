@@ -28,7 +28,8 @@ public class NewCase {
   private String msoa;
   private String lad;
   private String region;
-  private String htc;
+  private String htcWillingness;
+  private String htcDigital;
   private String fieldCoordinatorId;
   private String fieldOfficerId;
   private String treatmentCode;

@@ -37,7 +37,8 @@ public class JunkDataHelper {
     junkCase.setCeExpectedCapacity(0);
     junkCase.setFieldCoordinatorId("fcor_id");
     junkCase.setFieldOfficerId("foff_id");
-    junkCase.setHtc("1");
+    junkCase.setHtcDigital("1");
+    junkCase.setHtcWillingness("1");
     junkCase.setLad("0000");
     junkCase.setLatitude("0.0.0.0.0.0");
     junkCase.setLsoa("0000");
@@ -95,7 +96,8 @@ public class JunkDataHelper {
     jobRowData.put("MSOA", "0000");
     jobRowData.put("LAD", "0000");
     jobRowData.put("REGION", "0000");
-    jobRowData.put("HTC", "1");
+    jobRowData.put("HTC_WILLINGNESS", "1");
+    jobRowData.put("HTC_DIGITAL", "1");
     jobRowData.put("TREATMENT_CODE", "HH_PBXN");
     jobRowData.put("FIELDCOORDINATOR_ID", "0000");
     jobRowData.put("FIELDOFFICER_ID", "0000");
