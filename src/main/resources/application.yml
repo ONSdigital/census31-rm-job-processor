@@ -43,6 +43,6 @@ healthcheck:
 
 queueconfig:
   new-case-topic: event_new-case
-  refusal-event-topic: event_refusal
+  refusal-event-topic: event_refusal-received
   invalid-case-event-topic: event_invalid-case
   publishtimeout: 30  # In seconds
