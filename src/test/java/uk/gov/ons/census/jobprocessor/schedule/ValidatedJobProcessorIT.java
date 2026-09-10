@@ -191,9 +191,9 @@ public class ValidatedJobProcessorIT {
       // Now check that the job processed OK
       EventDTO emittedEvent = surveyUpdateQueue.getQueue().poll(20, TimeUnit.SECONDS);
       assertThat(emittedEvent).isNotNull();
-      assertThat(emittedEvent.getPayload().getInvalidCase()).isNotNull();
-      assertThat(emittedEvent.getPayload().getInvalidCase().getCaseId()).isEqualTo(caze.getId());
-      assertThat(emittedEvent.getPayload().getInvalidCase().getReason()).isEqualTo("why");
+      assertThat(emittedEvent.getPayload().getInvalidAddress()).isNotNull();
+      assertThat(emittedEvent.getPayload().getInvalidAddress().getCaseId()).isEqualTo(caze.getId());
+      assertThat(emittedEvent.getPayload().getInvalidAddress().getReason()).isEqualTo("why");
 
       Job processedJob = getProcessedJob(job.getId());
       assertThat(processedJob.getJobStatus()).isEqualTo(JobStatus.PROCESSED);
