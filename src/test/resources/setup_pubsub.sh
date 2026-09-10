@@ -9,5 +9,5 @@ curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/subscriptions/even
 curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/topics/event_refusal
 curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/subscriptions/event_refusal_rm-case-processor -H 'Content-Type: application/json' -d '{"topic": "projects/our-project/topics/event_refusal"}'
 
-curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/topics/event_invalid-case
-curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/subscriptions/event_invalid-case_rm-case-processor -H 'Content-Type: application/json' -d '{"topic": "projects/our-project/topics/event_invalid-case"}'
+curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/topics/event_address-not-valid
+curl -X PUT http://$PUBSUB_SETUP_HOST/v1/projects/our-project/subscriptions/event_address-not-valid-case_rm-case-processor -H 'Content-Type: application/json' -d '{"topic": "projects/our-project/topics/event_address-not-valid"}'

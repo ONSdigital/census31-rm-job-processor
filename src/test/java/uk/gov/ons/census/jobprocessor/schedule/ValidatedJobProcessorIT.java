@@ -39,7 +39,7 @@ import uk.gov.ons.census.jobprocessor.testutils.QueueSpy;
 public class ValidatedJobProcessorIT {
   private static final String NEW_CASE_SUBSCRIPTION = "event_new-case_rm-case-processor";
   private static final String REFUSAL_SUBSCRIPTION = "event_refusal_rm-case-processor";
-  private static final String INVALID_SUBSCRIPTION = "event_invalid-case_rm-case-processor";
+  private static final String INVALID_SUBSCRIPTION = "event_address-not-valid_rm-case-processor";
 
   @Autowired private JobRepository jobRepository;
 

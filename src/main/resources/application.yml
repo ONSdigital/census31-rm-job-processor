@@ -44,5 +44,5 @@ healthcheck:
 queueconfig:
   new-case-topic: event_new-case
   refusal-event-topic: event_refusal
-  invalid-case-event-topic: event_invalid-case
+  invalid-case-event-topic: event_address-not-valid
   publishtimeout: 30  # In seconds
