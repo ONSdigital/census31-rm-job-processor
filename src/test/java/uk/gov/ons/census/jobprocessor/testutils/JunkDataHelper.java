@@ -28,6 +28,7 @@ public class JunkDataHelper {
   public Case setupJunkCase() {
     Case junkCase = new Case();
     junkCase.setId(UUID.randomUUID());
+    junkCase.setUprn("000122200");
     junkCase.setInvalid(false);
     junkCase.setCollectionExercise(setupJunkCollex());
     junkCase.setCaseRef(RANDOM.nextLong());
@@ -40,12 +41,12 @@ public class JunkDataHelper {
     junkCase.setHtcDigital("1");
     junkCase.setHtcWillingness("1");
     junkCase.setLad("0000");
-    junkCase.setLatitude("0.0.0.0.0.0");
+    junkCase.setLatitude("35.1234567");
     junkCase.setLsoa("0000");
     junkCase.setRegion("EN");
     junkCase.setOa("0000");
     junkCase.setMsoa("0000");
-    junkCase.setPostcode("CFXX XXX");
+    junkCase.setPostcode("CF0 1XX");
     junkCase.setTreatmentCode("BLJF_FEJG");
     junkCase.setUprn("000000");
     junkCase.setTownName("Best Town");
@@ -88,17 +89,17 @@ public class JunkDataHelper {
     jobRowData.put("ADDRESS_LINE2", "");
     jobRowData.put("ADDRESS_LINE3", "");
     jobRowData.put("TOWN_NAME", "Ponty");
-    jobRowData.put("POSTCODE", "CFXX XXX");
-    jobRowData.put("LATITUDE", "0000");
-    jobRowData.put("LONGITUDE", "0000");
+    jobRowData.put("POSTCODE", "CF1 0AB");
+    jobRowData.put("LATITUDE", "35.123456");
+    jobRowData.put("LONGITUDE", "45.876543");
     jobRowData.put("OA", "0000");
     jobRowData.put("LSOA", "0000");
     jobRowData.put("MSOA", "0000");
     jobRowData.put("LAD", "0000");
-    jobRowData.put("REGION", "0000");
+    jobRowData.put("REGION", "SA");
     jobRowData.put("HTC_WILLINGNESS", "1");
     jobRowData.put("HTC_DIGITAL", "1");
-    jobRowData.put("TREATMENT_CODE", "HH_PBXN");
+    jobRowData.put("TREATMENT_CODE", "HH_ONS");
     jobRowData.put("FIELDCOORDINATOR_ID", "0000");
     jobRowData.put("FIELDOFFICER_ID", "0000");
     jobRowData.put("CE_EXPECTED_CAPACITY", "0");
