@@ -29,6 +29,10 @@ spring:
         size: 10
 
   jackson:
+    # Boot 4 migration: freeze Spring's own mapper at Jackson 2 behaviour so
+    # this release changes no contract. REMOVE in H2 2027 as its own
+    # announced change, estate-wide.
+    use-jackson2-defaults: true
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
