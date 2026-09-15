@@ -5,9 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Instant;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.PayloadDTO;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.RefusalDTO;
-import tools.jackson.databind.ObjectMapper;
 
 class ObjectMapperFactoryTest {
   private static final ObjectMapper OBJECT_MAPPER = ObjectMapperFactory.objectMapper();
