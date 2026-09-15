@@ -67,12 +67,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Run the properties migrator once, read every warning, then remove it -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-properties-migrator</artifactId>
-                <scope>runtime</scope>
-            </dependency>
             <dependency>
                 <groupId>uk.gov.ons.census</groupId>
                 <artifactId>census-rm-common-entity-model</artifactId>
