@@ -8,7 +8,7 @@ import uk.gov.ons.census.common.model.entity.JobRow;
 import uk.gov.ons.census.common.validation.ColumnValidator;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.EventDTO;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.EventHeaderDTO;
-import uk.gov.ons.census.jobprocessor.model.dto.messaging.InvalidCaseDTO;
+import uk.gov.ons.census.jobprocessor.model.dto.messaging.InvalidAddressDTO;
 import uk.gov.ons.census.jobprocessor.model.dto.messaging.PayloadDTO;
 import uk.gov.ons.census.jobprocessor.utility.EventHelper;
 
@@ -19,16 +19,16 @@ public class BulkInvalidCaseTransformer implements Transformer {
       Job job, JobRow jobRow, ColumnValidator[] columnValidators, String topic) {
     Map<String, String> rowData = jobRow.getRowData();
 
-    InvalidCaseDTO invalidCaseDTO = new InvalidCaseDTO();
-    invalidCaseDTO.setCaseId(UUID.fromString(rowData.get("caseId")));
-    invalidCaseDTO.setReason(rowData.get("reason"));
+    InvalidAddressDTO invalidAddressDTO = new InvalidAddressDTO();
+    invalidAddressDTO.setCaseId(UUID.fromString(rowData.get("caseId")));
+    invalidAddressDTO.setReason(rowData.get("reason"));
 
     PayloadDTO payloadDTO = new PayloadDTO();
-    payloadDTO.setInvalidCase(invalidCaseDTO);
+    payloadDTO.setInvalidAddress(invalidAddressDTO);
 
     EventDTO event = new EventDTO();
     EventHeaderDTO eventHeader =
-        EventHelper.createEventDTO(topic, job.getProcessedBy(), EventType.INVALID_CASE);
+        EventHelper.createEventDTO(topic, job.getProcessedBy(), EventType.ADDRESS_NOT_VALID);
     eventHeader.setCorrelationId(job.getId());
     event.setHeader(eventHeader);
     event.setPayload(payloadDTO);

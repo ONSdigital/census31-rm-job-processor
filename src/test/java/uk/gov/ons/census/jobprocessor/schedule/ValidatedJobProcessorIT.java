@@ -39,7 +39,7 @@ import uk.gov.ons.census.jobprocessor.testutils.QueueSpy;
 public class ValidatedJobProcessorIT {
   private static final String NEW_CASE_SUBSCRIPTION = "event_new-case_rm-case-processor";
   private static final String REFUSAL_SUBSCRIPTION = "event_refusal_rm-case-processor";
-  private static final String INVALID_SUBSCRIPTION = "event_invalid-case_rm-case-processor";
+  private static final String INVALID_SUBSCRIPTION = "event_address-not-valid_rm-case-processor";
 
   @Autowired private JobRepository jobRepository;
 
@@ -191,9 +191,9 @@ public class ValidatedJobProcessorIT {
       // Now check that the job processed OK
       EventDTO emittedEvent = surveyUpdateQueue.getQueue().poll(20, TimeUnit.SECONDS);
       assertThat(emittedEvent).isNotNull();
-      assertThat(emittedEvent.getPayload().getInvalidCase()).isNotNull();
-      assertThat(emittedEvent.getPayload().getInvalidCase().getCaseId()).isEqualTo(caze.getId());
-      assertThat(emittedEvent.getPayload().getInvalidCase().getReason()).isEqualTo("why");
+      assertThat(emittedEvent.getPayload().getInvalidAddress()).isNotNull();
+      assertThat(emittedEvent.getPayload().getInvalidAddress().getCaseId()).isEqualTo(caze.getId());
+      assertThat(emittedEvent.getPayload().getInvalidAddress().getReason()).isEqualTo("why");
 
       Job processedJob = getProcessedJob(job.getId());
       assertThat(processedJob.getJobStatus()).isEqualTo(JobStatus.PROCESSED);

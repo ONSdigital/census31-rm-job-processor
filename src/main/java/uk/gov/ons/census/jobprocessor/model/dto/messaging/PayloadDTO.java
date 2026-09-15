@@ -8,6 +8,6 @@ import lombok.Data;
 @JsonInclude(Include.NON_NULL)
 public class PayloadDTO {
   private RefusalDTO refusal;
-  private InvalidCaseDTO invalidCase;
+  private InvalidAddressDTO invalidAddress;
   private NewCase newCase;
 }
