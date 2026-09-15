@@ -4,6 +4,7 @@ import uk.gov.ons.census.common.model.entity.Job;
 import uk.gov.ons.census.common.model.entity.JobRow;
 import uk.gov.ons.census.common.validation.ColumnValidator;
 
+@FunctionalInterface
 public interface Transformer {
   Object transformRow(Job job, JobRow jobRow, ColumnValidator[] columnValidators, String topic);
 }
