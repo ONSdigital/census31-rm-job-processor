@@ -29,7 +29,7 @@ public class BulkRefusalTransformer implements Transformer {
 
     EventDTO event = new EventDTO();
     EventHeaderDTO eventHeader =
-        EventHelper.createEventDTO(topic, job.getProcessedBy(), EventType.REFUSAL);
+        EventHelper.createEventDTO(topic, job.getProcessedBy(), EventType.REFUSAL_RECEIVED);
     eventHeader.setCorrelationId(job.getId());
     event.setHeader(eventHeader);
     event.setPayload(payloadDTO);
