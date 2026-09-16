@@ -252,7 +252,6 @@
                 </dependencies>
                 <configuration>
                     <targetJdk>${java.version}</targetJdk>
-                    <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
                     <failurePriority>3</failurePriority>
                     <failOnViolation>true</failOnViolation>
                     <verbose>true</verbose>
@@ -395,8 +394,17 @@
                     <encoding>UTF-8</encoding>
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
+                        <arg>--should-stop=ifError=FLOW</arg>
+                        <!-- Required by Error Prone 2.44+ on JDK 21 -->
+                        <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
+                        <arg>-Xplugin:ErrorProne</arg>
                     </compilerArgs>
                     <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_core</artifactId>
+                            <version>${error-prone-core.version}</version>
+                        </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
