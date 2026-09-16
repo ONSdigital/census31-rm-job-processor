@@ -31,14 +31,14 @@ public class PubsubHelper {
 
   private static final ObjectMapper objectMapper = ObjectMapperFactory.objectMapper();
 
-  public <T> QueueSpy pubsubProjectListen(String subscription, Class<T> contentClass) {
+  public <T> QueueSpy<T> pubsubProjectListen(String subscription, Class<T> contentClass) {
     String fullyQualifiedSubscription =
         toProjectSubscriptionName(subscription, pubsubProject).toString();
     return listen(fullyQualifiedSubscription, contentClass);
   }
 
-  public <T> QueueSpy listen(String subscription, Class<T> contentClass) {
-    BlockingQueue<T> queue = new ArrayBlockingQueue(50);
+  public <T> QueueSpy<T> listen(String subscription, Class<T> contentClass) {
+    BlockingQueue<T> queue = new ArrayBlockingQueue<>(50);
     Subscriber subscriber =
         pubSubTemplate.subscribe(
             subscription,
@@ -48,16 +48,15 @@ public class PubsubHelper {
                     objectMapper.readValue(
                         message.getPubsubMessage().getData().toByteArray(), contentClass);
                 queue.add(messageObject);
-                var unused = message.ack();
               } catch (JacksonException e) {
                 System.out.println("ERROR: Cannot unmarshal bad data on PubSub subscription");
               } finally {
                 // Always want to ack, to get rid of dodgy messages
-                var unused = message.ack();
+                message.ack();
               }
             });
 
-    return new QueueSpy(queue, subscriber);
+    return new QueueSpy<>(queue, subscriber);
   }
 
   public void purgePubsubProjectMessages(String subscription, String topic) {
