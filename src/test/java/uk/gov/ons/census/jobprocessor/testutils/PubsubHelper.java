@@ -2,11 +2,9 @@ package uk.gov.ons.census.jobprocessor.testutils;
 
 import static com.google.cloud.spring.pubsub.support.PubSubSubscriptionUtils.toProjectSubscriptionName;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.pubsub.v1.Subscriber;
 import com.google.cloud.spring.autoconfigure.pubsub.GcpPubSubProperties;
 import com.google.cloud.spring.pubsub.core.PubSubTemplate;
-import java.io.IOException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import lombok.AllArgsConstructor;
@@ -17,6 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import uk.gov.ons.census.jobprocessor.utility.ObjectMapperFactory;
 
 @Component
@@ -31,14 +31,14 @@ public class PubsubHelper {
 
   private static final ObjectMapper objectMapper = ObjectMapperFactory.objectMapper();
 
-  public <T> QueueSpy pubsubProjectListen(String subscription, Class<T> contentClass) {
+  public <T> QueueSpy<T> pubsubProjectListen(String subscription, Class<T> contentClass) {
     String fullyQualifiedSubscription =
         toProjectSubscriptionName(subscription, pubsubProject).toString();
     return listen(fullyQualifiedSubscription, contentClass);
   }
 
-  public <T> QueueSpy listen(String subscription, Class<T> contentClass) {
-    BlockingQueue<T> queue = new ArrayBlockingQueue(50);
+  public <T> QueueSpy<T> listen(String subscription, Class<T> contentClass) {
+    BlockingQueue<T> queue = new ArrayBlockingQueue<>(50);
     Subscriber subscriber =
         pubSubTemplate.subscribe(
             subscription,
@@ -48,8 +48,7 @@ public class PubsubHelper {
                     objectMapper.readValue(
                         message.getPubsubMessage().getData().toByteArray(), contentClass);
                 queue.add(messageObject);
-                message.ack();
-              } catch (IOException e) {
+              } catch (JacksonException e) {
                 System.out.println("ERROR: Cannot unmarshal bad data on PubSub subscription");
               } finally {
                 // Always want to ack, to get rid of dodgy messages
@@ -57,7 +56,7 @@ public class PubsubHelper {
               }
             });
 
-    return new QueueSpy(queue, subscriber);
+    return new QueueSpy<>(queue, subscriber);
   }
 
   public void purgePubsubProjectMessages(String subscription, String topic) {
@@ -79,7 +78,7 @@ public class PubsubHelper {
       // There's no concept of a 'purge' with pubsub. Crudely, we have to delete & recreate
       restTemplate.delete(subscriptionUrl);
     } catch (HttpClientErrorException exception) {
-      if (exception.getRawStatusCode() != 404) {
+      if (exception.getStatusCode().value() != 404) {
         throw exception;
       }
     }
@@ -88,7 +87,7 @@ public class PubsubHelper {
       restTemplate.put(
           subscriptionUrl, new SubscriptionTopic("projects/" + project + "/topics/" + topic));
     } catch (HttpClientErrorException exception) {
-      if (exception.getRawStatusCode() != 409) {
+      if (exception.getStatusCode().value() != 409) {
         throw exception;
       }
     }
@@ -96,7 +95,7 @@ public class PubsubHelper {
 
   @Data
   @AllArgsConstructor
-  private class SubscriptionTopic {
+  private static class SubscriptionTopic {
     private String topic;
   }
 }
